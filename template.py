@@ -18,7 +18,9 @@ list_of_files = [
 
 for file_path in list_of_files:
     file_path = Path(file_path)
-    if file_path.suffix == "" and file_path.name != "":
+
+    # Check if the path should be a directory (explicit trailing slash)
+    if file_path.name == "static" or str(file_path).endswith('/'):
         os.makedirs(file_path, exist_ok=True)
         logging.info(f"Creating directory {file_path}")
     else:
